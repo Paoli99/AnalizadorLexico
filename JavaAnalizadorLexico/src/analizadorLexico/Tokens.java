@@ -10,6 +10,7 @@ package analizadorLexico;
  * 
  */
 public enum Tokens {
+    Reservada_if,
     Reservada_else,
     Reservada_for,
     Reservada_while,
