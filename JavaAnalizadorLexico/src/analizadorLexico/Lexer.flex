@@ -7,7 +7,7 @@ import static analizadorLexico.Tokens.*;
 L=[a-zA-Z_]+
 D=("+"|"-")?[0-9]+
 R=("+"|"-")?[0-9]+"."[0-9]+
-espacio=[ ,\t,\r,\n]+
+espacio=[ ,\r]+
 %{
     public String lexeme;
 %}
@@ -21,7 +21,8 @@ stringa {lexeme=yytext(); return Reservada_string;}
 bool {lexeme=yytext(); return Reservada_boolean;}
 {espacio} {/*Ignore*/}
 "//".* {/*Ignore*/}
-"\r"|"\n"|"\r\n" {lexeme=yytext(); return SaltoLinea;}
+"\t"  {lexeme=yytext(); return Tabulacion;}
+"\n" {lexeme=yytext(); return SaltoLinea;}
 "=" {lexeme=yytext(); return igual;}
 "+" {lexeme=yytext(); return suma;}
 "-" {lexeme=yytext(); return resta;}
@@ -33,10 +34,10 @@ bool {lexeme=yytext(); return Reservada_boolean;}
  "maggiore" | "inferiore" | "uguale" | "diverso" | "maggiore=" | "inferiore=" {lexeme = yytext(); return Op_relacional;}
 "vero" {lexeme = yytext(); return Logico_true;}
 "falso" {lexeme = yytext(); return Logico_false;}
- "("  {lexeme=yytext(); return Parentesis_a;}
- ")"  {lexeme=yytext(); return Parentesis_b;}
- "{"  {lexeme=yytext(); return Llave_a;}
- "}"  {lexeme=yytext(); return Llave_b;}
+ "("  {lexeme=yytext(); return Parentesis_abrir;}
+ ")"  {lexeme=yytext(); return Parentesis_cerrar;}
+ "{"  {lexeme=yytext(); return Llave_abrir;}
+ "}"  {lexeme=yytext(); return Llave_cerrar;}
  "principale"  {lexeme=yytext(); return Main;}
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}

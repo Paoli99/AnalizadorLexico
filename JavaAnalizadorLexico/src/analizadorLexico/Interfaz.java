@@ -240,16 +240,16 @@ public class Interfaz extends javax.swing.JFrame {
                 case Logico_false:
                     appendToPane(txtInput, "falso", Color.BLUE);
                     break;
-                case Parentesis_a:
+                case Parentesis_abrir:
                     appendToPane(txtInput, "( ", Color.decode("#FE5E41"));
                     break;
-                case Parentesis_b:
+                case Parentesis_cerrar:
                     appendToPane(txtInput, ") ", Color.decode("#FE5E41"));
                     break;
-                case Llave_a:
+                case Llave_abrir:
                     appendToPane(txtInput, "{ ", Color.decode("#FE5E41"));
                     break;
-                case Llave_b:
+                case Llave_cerrar:
                     appendToPane(txtInput, "} ", Color.decode("#FE5E41"));
                     break;
                 case Main:
@@ -293,7 +293,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         try {
             String code = new String(Files.readAllBytes(file.toPath()));
-//            txtInput.setText(code);
             changeTextColor(code);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
