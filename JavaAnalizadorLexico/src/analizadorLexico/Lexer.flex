@@ -2,9 +2,11 @@ package analizadorLexico;
 import static analizadorLexico.Tokens.*;
 %%
 %class Lexer
+%line
 %type Tokens
 L=[a-zA-Z_]+
-D=[0-9]+
+D=("+"|"-")?[0-9]+
+R=("+"|"-")?[0-9]+"."[0-9]+
 espacio=[ ,\t,\r,\n]+
 %{
     public String lexeme;
@@ -19,7 +21,7 @@ stringa {lexeme=yytext(); return Reservada_string;}
 bool {lexeme=yytext(); return Reservada_boolean;}
 {espacio} {/*Ignore*/}
 "//".* {/*Ignore*/}
-"\n" {lexeme=yytext(); return SaltoLinea;}
+"\r"|"\n"|"\r\n" {lexeme=yytext(); return SaltoLinea;}
 "=" {lexeme=yytext(); return igual;}
 "+" {lexeme=yytext(); return suma;}
 "-" {lexeme=yytext(); return resta;}
@@ -38,4 +40,5 @@ bool {lexeme=yytext(); return Reservada_boolean;}
  "principale"  {lexeme=yytext(); return Main;}
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
+("(-"{R}+")")|{R}+ {lexeme=yytext(); return NumeroReal;}
  . {return ERROR;}
