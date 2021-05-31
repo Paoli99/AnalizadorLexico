@@ -21,10 +21,10 @@ public enum Tokens {
     Op_logico,
     Logico_true,
     Logico_false,
-    Parentesis_a,
-    Parentesis_b,
-    Llave_a,
-    Llave_b,
+    Parentesis_abrir,
+    Parentesis_cerrar,
+    Llave_abrir,
+    Llave_cerrar,
     Main,
     Identificador,
     Numero,
@@ -32,6 +32,7 @@ public enum Tokens {
     SaltoLinea,
     fin_de_linea,
     Op_relacional,
+    Tabulacion,
     ERROR
     
 }
