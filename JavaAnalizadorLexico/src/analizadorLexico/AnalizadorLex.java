@@ -8,24 +8,20 @@ package analizadorLexico;
 import java.io.IOException;
 import java.io.StringReader;
 
-/**
- *
- * @author Yoga
- */
 public class AnalizadorLex {
-    public String analize(String text) throws IOException
-    {
-        String output = "";
-                
-    // podemos manejar cada caracter de cada linea aqui
-            Lexer lexer = new Lexer(new StringReader(text));
-            while (true){
-                Tokens token = lexer.yylex();
-                if(token == null){
-            break;
+
+    public String analize(String text) throws IOException {
+        String result = "";
+
+        // podemos manejar cada caracter de cada linea aqui
+        Lexer lexer = new Lexer(new StringReader(text));
+        while (true) {
+            Tokens token = lexer.yylex();
+            if (token == null) {
+                break;
             }
-            output+=lexer.lexeme + " -- " + token + "\n";
+            result += lexer.lexeme + " --> " + token + "\n";
         }
-     return output;       
+        return result;
     }
 }
