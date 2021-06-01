@@ -10,6 +10,7 @@ public enum Tokens {
     Reservada_for,
     Reservada_while,
     Reservada_int,
+    Reservada_float,
     Reservada_string,
     Reservada_boolean,
     igual,
@@ -17,6 +18,7 @@ public enum Tokens {
     resta,
     multiplicacion,
     division,
+    Factorial,
     comillas,
     Op_logico,
     Logico_true,
@@ -33,6 +35,6 @@ public enum Tokens {
     fin_de_linea,
     Op_relacional,
     Tabulacion,
-    ERROR
+    ERROR_LÉXICO
     
 }
