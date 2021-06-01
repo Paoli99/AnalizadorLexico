@@ -195,28 +195,28 @@ public class Interfaz extends javax.swing.JFrame {
             }
 
             switch (token) {
-                case Reservada_if:
+                case palabra_reservada_if:
                     appendToPane(txtInput, "si ", Color.decode("#9487d5"));
                     break;
-                case Reservada_else:
+                case palabra_reservada_else:
                     appendToPane(txtInput, "altro", Color.decode("#9487d5"));
                     break;
-                case Reservada_for:
+                case palabra_reservada_for:
                     appendToPane(txtInput, "per", Color.decode("#9487d5"));
                     break;
-                case Reservada_while:
+                case palabra_reservada_while:
                     appendToPane(txtInput, "mentre", Color.decode("#b43f4e"));
                     break;
-                case Reservada_int:
+                case palabra_reservada_int:
                     appendToPane(txtInput, "intero ", Color.BLUE);
                     break;
-                case Reservada_float:
+                case palabra_reservada_float:
                     appendToPane(txtInput, "reale ", Color.BLUE);
                     break;
-                case Reservada_string:
+                case palabra_reservada_string:
                     appendToPane(txtInput, "stringa ", Color.BLUE);
                     break;
-                case Reservada_boolean:
+                case palabra_reservada_boolean:
                     appendToPane(txtInput, "bool ", Color.BLUE);
                     break;
                 case igual:
@@ -235,24 +235,24 @@ public class Interfaz extends javax.swing.JFrame {
                     appendToPane(txtInput, " / ", Color.decode("#3c7eaa"));
                     break;
                 case fin_de_linea:
-                    appendToPane(txtInput, "#", Color.MAGENTA);
+                    appendToPane(txtInput, " #", Color.MAGENTA);
                     break;
                 case comillas:
                     appendToPane(txtInput, "\" ", Color.decode("#FE5E41"));
                     break;
-                case Op_logico:
+                case op_logico:
                     appendToPane(txtInput, lexer.lexeme + " ", Color.decode("#5d2261"));
                     break;
-                case Op_relacional:
+                case op_relacional:
                     appendToPane(txtInput, lexer.lexeme + " ", Color.decode("#5d2261"));
                     break;
-                case Logico_true:
+                case logico_true:
                     appendToPane(txtInput, "vero ", Color.decode("#277030"));
                     break;
-                case Logico_false:
+                case logico_false:
                     appendToPane(txtInput, "falso ", Color.decode("#277030"));
                     break;
-                case Main:
+                case main:
                     appendToPane(txtInput, "principale ", Color.DARK_GRAY);
                     break;
                 case ERROR_LÉXICO:
