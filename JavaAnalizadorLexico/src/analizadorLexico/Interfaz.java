@@ -1,6 +1,7 @@
 package analizadorLexico;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -99,6 +100,14 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         txtInput.setFont(new java.awt.Font("Consolas", 0, 15)); // NOI18N
+        txtInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtInputKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtInputKeyReleased(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtInput);
 
         txtArea.setColumns(20);
@@ -165,8 +174,8 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void appendToPane(JTextPane tp, String msg, Color c) {
-            StyleContext sc = StyleContext.getDefaultStyleContext();
-           AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
 
         aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
         int len = tp.getDocument().getLength();
@@ -187,40 +196,43 @@ public class Interfaz extends javax.swing.JFrame {
 
             switch (token) {
                 case Reservada_if:
-                    appendToPane(txtInput, "si", Color.GREEN);
+                    appendToPane(txtInput, "si ", Color.decode("#9487d5"));
                     break;
                 case Reservada_else:
-                    appendToPane(txtInput, "altro", Color.GREEN);
+                    appendToPane(txtInput, "altro", Color.decode("#9487d5"));
                     break;
                 case Reservada_for:
-                    appendToPane(txtInput, "per", Color.GREEN);
+                    appendToPane(txtInput, "per", Color.decode("#9487d5"));
                     break;
                 case Reservada_while:
-                    appendToPane(txtInput, "mentre", Color.GREEN);
+                    appendToPane(txtInput, "mentre", Color.decode("#b43f4e"));
                     break;
                 case Reservada_int:
-                    appendToPane(txtInput, "intero ", Color.ORANGE);
+                    appendToPane(txtInput, "intero ", Color.BLUE);
+                    break;
+                case Reservada_float:
+                    appendToPane(txtInput, "reale ", Color.BLUE);
                     break;
                 case Reservada_string:
-                    appendToPane(txtInput, "stringa ", Color.ORANGE);
+                    appendToPane(txtInput, "stringa ", Color.BLUE);
                     break;
                 case Reservada_boolean:
-                    appendToPane(txtInput, "bool ", Color.ORANGE);
+                    appendToPane(txtInput, "bool ", Color.BLUE);
                     break;
                 case igual:
-                    appendToPane(txtInput, " = ", Color.CYAN);
+                    appendToPane(txtInput, "= ", Color.decode("#3c7eaa"));
                     break;
                 case suma:
-                    appendToPane(txtInput, " + ", Color.CYAN);
+                    appendToPane(txtInput, " + ", Color.decode("#3c7eaa"));
                     break;
                 case resta:
-                    appendToPane(txtInput, " - ", Color.CYAN);
+                    appendToPane(txtInput, " - ", Color.decode("#3c7eaa"));
                     break;
                 case multiplicacion:
-                    appendToPane(txtInput, " * ", Color.CYAN);
+                    appendToPane(txtInput, " * ", Color.decode("#3c7eaa"));
                     break;
                 case division:
-                    appendToPane(txtInput, " / ", Color.CYAN);
+                    appendToPane(txtInput, " / ", Color.decode("#3c7eaa"));
                     break;
                 case fin_de_linea:
                     appendToPane(txtInput, "#", Color.MAGENTA);
@@ -229,45 +241,27 @@ public class Interfaz extends javax.swing.JFrame {
                     appendToPane(txtInput, "\" ", Color.decode("#FE5E41"));
                     break;
                 case Op_logico:
-                    appendToPane(txtInput, lexer.lexeme + " ", Color.BLACK);
+                    appendToPane(txtInput, lexer.lexeme + " ", Color.decode("#5d2261"));
                     break;
                 case Op_relacional:
-                    appendToPane(txtInput, lexer.lexeme + " ", Color.BLACK);
+                    appendToPane(txtInput, lexer.lexeme + " ", Color.decode("#5d2261"));
                     break;
                 case Logico_true:
-                    appendToPane(txtInput, "vero", Color.BLUE);
+                    appendToPane(txtInput, "vero ", Color.decode("#277030"));
                     break;
                 case Logico_false:
-                    appendToPane(txtInput, "falso", Color.BLUE);
-                    break;
-                case Parentesis_abrir:
-                    appendToPane(txtInput, "( ", Color.decode("#FE5E41"));
-                    break;
-                case Parentesis_cerrar:
-                    appendToPane(txtInput, ") ", Color.decode("#FE5E41"));
-                    break;
-                case Llave_abrir:
-                    appendToPane(txtInput, "{ ", Color.decode("#FE5E41"));
-                    break;
-                case Llave_cerrar:
-                    appendToPane(txtInput, "} ", Color.decode("#FE5E41"));
+                    appendToPane(txtInput, "falso ", Color.decode("#277030"));
                     break;
                 case Main:
-                    appendToPane(txtInput, "principale", Color.DARK_GRAY);
+                    appendToPane(txtInput, "principale ", Color.DARK_GRAY);
                     break;
-                case Identificador:
-                    appendToPane(txtInput, lexer.lexeme + " ", Color.BLACK);
-                    break;
-                case Numero:
-                    appendToPane(txtInput, lexer.lexeme + " ", Color.BLACK);
-                    break;
-                case ERROR:
+                case ERROR_LÉXICO:
                     appendToPane(txtInput, "ERROR ", Color.RED);
                     break;
                 default:
-                    appendToPane(txtInput, lexer.lexeme + " ", Color.BLUE);
+                    appendToPane(txtInput, lexer.lexeme + " ", Color.BLACK);
             }
-            
+
         }
 
     }
@@ -300,6 +294,24 @@ public class Interfaz extends javax.swing.JFrame {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputKeyPressed
+
+    }//GEN-LAST:event_txtInputKeyPressed
+
+    private void txtInputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE || evt.getKeyCode() == KeyEvent.VK_NUMBER_SIGN) {
+            try {
+                int pos = txtInput.getCaretPosition();
+                txtArea.setText(txtInput.getText());
+                txtInput.setText(null);
+                changeTextColor(txtArea.getText());
+                txtInput.setCaretPosition(pos);
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_txtInputKeyReleased
 
     public static void main(String args[]) {
         try {

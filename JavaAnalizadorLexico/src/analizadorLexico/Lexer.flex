@@ -5,7 +5,7 @@ import static analizadorLexico.Tokens.*;
 %line
 %type Tokens
 L=[a-zA-Z_]+
-D=("+"|"-")?[0-9]+
+N=("+"|"-")?[0-9]+
 R=("+"|"-")?[0-9]+"."[0-9]+
 espacio=[ ,\r]+
 %{
@@ -17,6 +17,7 @@ altro {lexeme=yytext(); return Reservada_else;}
 per {lexeme=yytext(); return Reservada_for;}
 mentre {lexeme=yytext(); return Reservada_while;}
 intero {lexeme=yytext(); return Reservada_int;}
+reale {lexeme=yytext(); return Reservada_float;}
 stringa {lexeme=yytext(); return Reservada_string;}
 bool {lexeme=yytext(); return Reservada_boolean;}
 {espacio} {/*Ignore*/}
@@ -39,7 +40,8 @@ bool {lexeme=yytext(); return Reservada_boolean;}
  "{"  {lexeme=yytext(); return Llave_abrir;}
  "}"  {lexeme=yytext(); return Llave_cerrar;}
  "principale"  {lexeme=yytext(); return Main;}
-{L}({L}|{D})* {lexeme=yytext(); return Identificador;}
-("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
+{L}({L}|{N})* {lexeme=yytext(); return Identificador;}
+("(-"{N}+")")|{N}+ {lexeme=yytext(); return Numero;}
 ("(-"{R}+")")|{R}+ {lexeme=yytext(); return NumeroReal;}
- . {return ERROR;}
+{N}"!" {lexeme=yytext(); return Factorial;}
+({N}|{R}){L}({N}|{R})* | "!"({L})* | ({L})*"!" | "!"({N}|{R})+ | . {lexeme=yytext(); return ERROR_LÉXICO;}
